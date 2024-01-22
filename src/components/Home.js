@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import Greeting from "../Utils/Greeting";
 import DisplayTodos from "../Utils/DisplayTodos";
 import { RxPlus } from "react-icons/rx";
@@ -25,8 +25,65 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  let themeFromLocalStorage = localStorage.getItem("theme");
+  if (themeFromLocalStorage === null) {
+    localStorage.setItem("theme", "purple");
+  }
+  const allThemes = [
+    {
+      name: "light",
+      colors: [
+        "neutral-100",
+        "neutral-200",
+        "neutral-300",
+        "neutral-400",
+        "neutral-500",
+        "neutral-600",
+        "neutral-700",
+        "neutral-800",
+        "neutral-900",
+      ],
+    },
+    {
+      name: "dark",
+      colors: [
+        "neutral-900",
+        "neutral-800",
+        "neutral-700",
+        "neutral-600",
+        "neutral-500",
+        "neutral-400",
+        "neutral-300",
+        "neutral-200",
+        "neutral-100",
+      ],
+    },
+    {
+      name: "purple",
+      colors: [
+        "purple-100",
+        "purple-200",
+        "purple-300",
+        "purple-400",
+        "purple-500",
+        "purple-600",
+        "purple-700",
+        "purple-800",
+        "purple-900",
+      ],
+    },
+  ];
+
   return (
-    <div className=" w-full relative min-h-screen pb-60 bg-gradient-to-r from-purple-700 to-purple-500">
+    <div
+      className={
+        "w-full relative min-h-screen pb-60 bg-gradient-to-r" +
+        " from-" +
+        allThemes.find((val) => val.name === themeFromLocalStorage).colors[6] +
+        " to-" +
+        allThemes.find((val) => val.name === themeFromLocalStorage).colors[4]
+      }
+    >
       <div className=" max-w-[1300px] px-3 m-auto">
         <div>
           <Greeting />
