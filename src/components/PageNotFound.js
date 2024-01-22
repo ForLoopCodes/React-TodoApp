@@ -2,10 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import error404Img from "../assets/opps.svg";
 import { FaArrowLeft } from "react-icons/fa";
+import returnAllThemes from "../constants/Data";
 
 const PageNotFound = () => {
+  let themeFromLocalStorage = localStorage.getItem("theme");
+  if (themeFromLocalStorage === null) {
+    localStorage.setItem("theme", "purple");
+  }
+  const allThemes = returnAllThemes();
+
   return (
-    <div className=" w-100 px-5 flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-700 to-purple-500">
+    <div
+      className={
+        " w-100 px-5 flex justify-center items-center min-h-screen bg-gradient-to-r" +
+        " from-" +
+        allThemes.find((val) => val.name === themeFromLocalStorage).colors[6] +
+        " to-" +
+        allThemes.find((val) => val.name === themeFromLocalStorage).colors[4]
+      }
+    >
       <div>
         <img
           src={error404Img}
@@ -20,7 +35,8 @@ const PageNotFound = () => {
         <div className=" text-center mt-4">
           <Link to={"/"}>
             <button className="flex group items-center gap-2 m-auto py-3 px-5 text-purple-500 font-semibold bg-amber-50 rounded-full hover:bg-purple-900 duration-300 hover:text-white max-sm:text-sm">
-            <FaArrowLeft className=" text-lg max-sm:text-base group-hover:-translate-x-1 duration-75"/> Go Back Home
+              <FaArrowLeft className=" text-lg max-sm:text-base group-hover:-translate-x-1 duration-75" />{" "}
+              Go Back Home
             </button>
           </Link>
         </div>
