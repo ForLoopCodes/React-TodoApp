@@ -5,6 +5,7 @@ import { RxPlus } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import DataContext from "../context/DataContext";
+import returnAllThemes from "../constants/Data";
 
 const Home = () => {
   const {
@@ -29,50 +30,7 @@ const Home = () => {
   if (themeFromLocalStorage === null) {
     localStorage.setItem("theme", "purple");
   }
-  const allThemes = [
-    {
-      name: "light",
-      colors: [
-        "neutral-100",
-        "neutral-200",
-        "neutral-300",
-        "neutral-400",
-        "neutral-500",
-        "neutral-600",
-        "neutral-700",
-        "neutral-800",
-        "neutral-900",
-      ],
-    },
-    {
-      name: "dark",
-      colors: [
-        "neutral-900",
-        "neutral-800",
-        "neutral-700",
-        "neutral-600",
-        "neutral-500",
-        "neutral-400",
-        "neutral-300",
-        "neutral-200",
-        "neutral-100",
-      ],
-    },
-    {
-      name: "purple",
-      colors: [
-        "purple-100",
-        "purple-200",
-        "purple-300",
-        "purple-400",
-        "purple-500",
-        "purple-600",
-        "purple-700",
-        "purple-800",
-        "purple-900",
-      ],
-    },
-  ];
+  const allThemes = returnAllThemes();
 
   return (
     <div
